@@ -1,3 +1,5 @@
+// TODO: equation has been split into parts but everything looks like string. Make sure numebrs are treated like numbers
+
 //query selectors for HTML elements
 const display = document.querySelector('#result-span');
 const numberButtons = document.querySelectorAll('#digit-1, #digit-2, #digit-3, #digit-4, #digit-5, #digit-6, #digit-7, #digit-8, #digit-9, #digit-0');
@@ -43,6 +45,17 @@ clearButton.addEventListener('click', () => {
 function updateDisplay(value) {
     display.textContent = value;
 }
+
+function seperateEquation() {
+    const equation = displayValue.split(/([+\-*/])/);
+    return equation;
+}
+
+// show result when clicking equals button & will trigger operate function
+equalsButton.addEventListener('click', () => {
+    const equation = seperateEquation();
+    updateDisplay(operate(equation[0], equation[1], equation[2]));
+})
 
 //add, sub, multiply, and div logic
 function add(a, b) {
