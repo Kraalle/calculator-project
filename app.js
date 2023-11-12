@@ -1,5 +1,3 @@
-// TODO: equation has been split into parts but everything looks like string. Make sure numebrs are treated like numbers
-
 //query selectors for HTML elements
 const display = document.querySelector('#result-span');
 const numberButtons = document.querySelectorAll('#digit-1, #digit-2, #digit-3, #digit-4, #digit-5, #digit-6, #digit-7, #digit-8, #digit-9, #digit-0');
@@ -13,22 +11,31 @@ let displayValue = '';
 let firstNum = '';
 let operator = '';
 let secondNum = '';
+let currentNum = '';
 
 // add eventlisteners to numberButtons
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const number = button.textContent;
-        displayValue += number
-        updateDisplay(displayValue);
+        currentNum += number
+        updateDisplay(currentNum);
     });
 });
 
 // add eventListeners to operatorButton
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        const operatorSymbol = button.textContent;
-        displayValue += operatorSymbol;
-        updateDisplay(displayValue);
+        if (currentNum !== '') {
+            if (firstNum === '' && operator === '') {
+                firstNum = parseFloat(currentNum);
+            } else {
+                secondNum = parseFloat(currentNum);
+                updateDisplay(operate(firstNum, operator, secondNum));
+                firstNum = parseFloat(display.textContent);
+            }
+        }
+        operator = button.textContent;
+        currentNum = '';
     });
 });
 
@@ -37,6 +44,7 @@ clearButton.addEventListener('click', () => {
     firstNum = '';
     secondNum = '';
     operator = '';
+    currentNum = '';
     displayValue = '';
     updateDisplay(displayValue);
 });
@@ -47,15 +55,23 @@ function updateDisplay(value) {
 }
 
 function seperateEquation() {
-    const equation = displayValue.split(/([+\-*/])/);
+    const equation = displayValue.split(/([+\-*/])/).filter(entry => entry !== '');
     return equation;
 }
 
 // show result when clicking equals button & will trigger operate function
 equalsButton.addEventListener('click', () => {
-    const equation = seperateEquation();
-    updateDisplay(operate(equation[0], equation[1], equation[2]));
-})
+    if (currentNum !== '') {
+        secondNum = parseFloat(currentNum);
+        updateDisplay(operate(firstNum, operator, secondNum));
+        
+        // Update variables for potential further calculations
+        firstNum = operate(firstNum, operator, secondNum);
+        operator = '';
+        secondNum = '';
+        currentNum = '';
+    }
+});
 
 //add, sub, multiply, and div logic
 function add(a, b) {
