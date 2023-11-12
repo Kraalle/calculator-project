@@ -46,7 +46,7 @@ clearButton.addEventListener('click', () => {
     operator = '';
     currentNum = '';
     displayValue = '';
-    updateDisplay(displayValue);
+    updateDisplay('0');
 });
 
 // update display function
