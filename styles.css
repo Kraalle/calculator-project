@@ -1,0 +1,34 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.main-container {
+    display: flex;
+    border: 1px solid black;
+    background-color: black;
+    flex-direction: column;
+    width: 340px;
+    text-align: right;
+}
+
+.result-container {
+    height: 86px;
+    background-color: gray;
+    margin: 5px;
+}
+
+.result-span {
+    font-size: 50px;
+}
+button {
+    font-size: 30px;
+    height: 86px;
+    width: 76px;
+    margin: 3px;
+}
+
+button[id*="operator"] {
+    background-color: #FF8F1F;
+}

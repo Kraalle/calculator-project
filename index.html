@@ -8,26 +8,34 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Calculator</h1>
     <div class="main-container" id="container">
-        <h1>Calculator</h1>
-        <div id="buttons">
-            <button class="clear-btn" id="clear">C</button>
-            <button id="operator-add">+</button>
-            <button id="operator-subtract">-</button>
-            <button id="operator-multiply">*</button>
-            <button id="operator-divide">/</button>
-            <button id="digit-1">1</button>
-            <button id="digit-2">2</button>
-            <button id="digit-3">3</button>
-            <button id="digit-4">4</button>
-            <button id="digit-5">5</button>
-            <button id="digit-6">6</button>
-            <button id="digit-7">7</button>
-            <button id="digit-8">8</button>
-            <button id="digit-9">9</button>
-            <button id="digit-0">0</button>
+        <div class="result-container" id="result-container">
+            <span class="result-span" id="result-span">0</span>
         </div>
-        <div class="result-container" id="result-container"><button id="equals">=</button><span class="result-span" id="result-span"> </span></div>
+        <div id="buttons">
+            <div>
+                <button id="digit-7">7</button>
+                <button id="digit-8">8</button>
+                <button id="digit-9">9</button>
+                <button id="operator-multiply">*</button>
+            </div>
+            <div>
+                <button id="digit-4">4</button>
+                <button id="digit-5">5</button>
+                <button id="digit-6">6</button>
+                <button id="operator-subtract">-</button>
+            </div>
+            <div>
+                <button id="digit-1">1</button>
+                <button id="digit-2">2</button>
+                <button id="digit-3">3</button>
+                <button id="operator-add">+</button>
+            </div>
+            <button id="digit-0">0</button>
+            <button id="equals">=</button>
+            <button class="clear-btn" id="clear">C</button>
+            <button id="operator-divide">/</button>
         </div>
     </div>
 </body>
